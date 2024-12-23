@@ -20,8 +20,12 @@ resource "aws_s3_bucket_lifecycle_configuration" "log_bucket" {
     status = "Enabled"
 
     transition {
-      days          = 90
+      days          = 30
       storage_class = "STANDARD_IA"
+    }
+
+    expiration {
+      days = 60
     }
   }
 } 
