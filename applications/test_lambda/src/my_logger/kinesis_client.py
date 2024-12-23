@@ -1,6 +1,6 @@
 import boto3
 import json
-from typing import Dict, Any
+from typing import Any
 from botocore.exceptions import BotoCoreError
 from my_logger.exceptions import KinesisWriteError
 
@@ -16,7 +16,7 @@ class KinesisWriter:
         self.firehose = boto3.client("firehose")
         self.delivery_stream_name = delivery_stream_name
 
-    def write_log(self, log_data: Dict[str, Any]) -> None:
+    def write_log(self, log_data: dict[str, Any]) -> None:
         """
         JSONデータをKinesis Firehoseに書き込む
 

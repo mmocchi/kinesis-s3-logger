@@ -1,6 +1,6 @@
 from dataclasses import dataclass, asdict
 from datetime import datetime
-from typing import Dict, Any, Optional
+from typing import Any, Optional
 from my_logger.protocols import LogWriter
 from my_logger.kinesis_client import KinesisWriter
 
@@ -12,14 +12,14 @@ class LogData:
     timestamp: str
     user_id: str
     action: str
-    details: Dict[str, Any]
+    details: dict[str, Any]
 
     @classmethod
     def create(
         cls,
         user_id: Optional[str],
         action: Optional[str],
-        details: Optional[Dict[str, Any]] = None,
+        details: Optional[dict[str, Any]] = None,
     ) -> "LogData":
         """新しいログデータインスタンスを作成する"""
 
@@ -34,7 +34,7 @@ class LogData:
             details=details,
         )
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """ログデータを辞書に変換する"""
         return asdict(self)
 
