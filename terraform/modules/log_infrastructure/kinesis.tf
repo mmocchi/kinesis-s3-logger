@@ -7,6 +7,13 @@ resource "aws_kinesis_firehose_delivery_stream" "log_stream" {
     bucket_arn = aws_s3_bucket.log_bucket.arn
     prefix     = "logs/"
 
+    # バッファリングの設定
+    buffer_size = 5  # MBサイズ (1-128 MB)
+    buffer_interval = 300  # 秒数 (60-900秒)
+
+    # S3配信失敗時のリトライ設定
+    retry_duration = 3600  # 秒数 (0-7200秒)
+
     cloudwatch_logging_options {
       enabled         = true
       log_group_name  = "/aws/firehose/${var.lambda_function_name}-stream"
