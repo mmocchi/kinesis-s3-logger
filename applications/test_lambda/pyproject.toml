@@ -1,0 +1,33 @@
+[project]
+name = "test-lambda"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=src --cov-report=term-missing" 
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/test_lambda"]
+
+[dependency-groups]
+dev = [
+    "boto3>=1.26.150",
+    "pytest-cov>=6.0.0",
+    "pytest>=8.3.4",
+    "ruff>=0.8.4",
+    "pytest-mock>=3.14.0",
+]
+
+[tool.hatch.build]
+artifacts = [
+    "src/test_lambda/py.typed"
+]
