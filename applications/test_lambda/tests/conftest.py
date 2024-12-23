@@ -1,6 +1,7 @@
 import pytest
 from typing import Dict, Any
 
+
 @pytest.fixture
 def sample_log_data() -> Dict[str, Any]:
     return {
@@ -25,6 +26,4 @@ def mock_boto3_client(mocker):
 
 @pytest.fixture
 def mock_logger(mocker):
-    print('(((((((((((((((((((((((((())))))))))))))))))))))))))')
-
     return mocker.patch("test_lambda.handler.logger")

@@ -1,7 +1,7 @@
 data "archive_file" "lambda_zip" {
   type        = "zip"
   source_dir  = "${path.module}/../../../applications/test_lambda/src"
-  output_path = "${path.module}/files/lambda_function.zip"
+  output_path = "${path.module}/.dist/lambda_function.zip"
 }
 
 resource "aws_lambda_function" "log_writer" {

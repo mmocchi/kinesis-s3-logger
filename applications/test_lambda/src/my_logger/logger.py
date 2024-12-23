@@ -22,11 +22,16 @@ class LogData:
         details: Optional[Dict[str, Any]] = None,
     ) -> "LogData":
         """新しいログデータインスタンスを作成する"""
+
+        user_id = user_id or ""
+        action = action or ""
+        details = details or {}
+
         return cls(
             timestamp=datetime.now().isoformat(),
             user_id=user_id,
             action=action,
-            details=details or {},
+            details=details,
         )
 
     def to_dict(self) -> Dict[str, Any]:

@@ -1,0 +1,20 @@
+version: "3"
+
+tasks:
+  lint:
+    desc: "Run linting"
+    cmds:
+      - uv run ruff check --fix src tests
+  mypy:
+    desc: "Run mypy"
+    cmds:
+      - uv run mypy src
+      - uv run mypy tests
+  format:
+    desc: "Run formatting"
+    cmds:
+      - uv run ruff format src tests
+  test:
+    desc: "Run pytest for testing"
+    cmds:
+      - uv run pytest tests --cov=test_lambda --cov-report=term-missing --cov-branch

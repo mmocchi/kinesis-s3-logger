@@ -1,0 +1,17 @@
+version: "3"
+
+tasks:
+  format:
+    desc: "Run formatting"
+    cmds:
+      - terraform fmt
+  plan-dev:
+    desc: "Run terraform plan"
+    dir: "environments/dev"
+    cmds:
+      - terraform plan
+  apply-dev:
+    desc: "Run terraform apply"
+    dir: "environments/dev"
+    cmds:
+      - terraform apply

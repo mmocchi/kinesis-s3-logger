@@ -24,11 +24,11 @@ def test_代表的なLogDataを作成できること():
     assert log_data.action == "test_action"
     assert log_data.details == {"key": "value"}
 
-    iso_format_pattern = r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$'
+    iso_format_pattern = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$"
     assert isinstance(log_data.timestamp, str)
     assert re.match(iso_format_pattern, log_data.timestamp) is not None
     # 実際にパースできることを確認
-    assert dt.datetime.fromisoformat(log_data.timestamp.replace('Z', '+00:00'))
+    assert dt.datetime.fromisoformat(log_data.timestamp.replace("Z", "+00:00"))
 
 
 def test_my_logger_write_log(mocker, sample_log_data):
