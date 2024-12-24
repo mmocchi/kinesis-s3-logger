@@ -3,9 +3,11 @@ import json
 from typing import Any
 from botocore.exceptions import BotoCoreError
 from my_logger.exceptions import KinesisWriteError
+from my_logger.interfaces import LogWriter
 
 
-class KinesisWriter:
+class KinesisWriter(LogWriter):
+    """Kinesis Firehoseへのログ出力実装"""
     def __init__(self, delivery_stream_name: str) -> None:
         """
         Kinesis Firehoseクライアントを初期化する

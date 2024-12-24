@@ -1,6 +1,6 @@
 import pytest
 from botocore.exceptions import BotoCoreError
-from my_logger.kinesis_client import KinesisWriter
+from my_logger.writer.kinesis_writer import KinesisWriter
 from my_logger.exceptions import KinesisWriteError
 
 

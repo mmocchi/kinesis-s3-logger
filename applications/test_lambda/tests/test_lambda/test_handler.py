@@ -26,7 +26,7 @@ def test_lambda_handler_success(mock_logger):
     # Assert
     assert response["statusCode"] == expected_status_code
     assert "message" in response["body"]
-    mock_logger.write_log.assert_called_once()
+    mock_logger.info.assert_called_once()
 
 
 def test_lambda_handler_log_write_error(mock_logger):
@@ -37,7 +37,7 @@ def test_lambda_handler_log_write_error(mock_logger):
     - ログ書き込みエラー時にLogWriteErrorが発生すること
     """
     # Arrange
-    mock_logger.write_log.side_effect = LogWriteError("Test error", Exception())
+    mock_logger.info.side_effect = LogWriteError("Test error", Exception())
 
     # Act & Assert
     with pytest.raises(LogWriteError):
