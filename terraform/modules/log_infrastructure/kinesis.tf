@@ -3,16 +3,15 @@ resource "aws_kinesis_firehose_delivery_stream" "log_stream" {
   destination = "extended_s3"
 
   extended_s3_configuration {
+    # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_firehose_delivery_stream#extended_s3_configuration-block
+    
     role_arn   = aws_iam_role.firehose_role.arn
     bucket_arn = aws_s3_bucket.log_bucket.arn
     prefix     = "logs/"
 
     # バッファリングの設定
-    buffer_size = 5  # MBサイズ (1-128 MB)
-    buffer_interval = 300  # 秒数 (60-900秒)
-
-    # S3配信失敗時のリトライ設定
-    retry_duration = 3600  # 秒数 (0-7200秒)
+    buffering_size = 5  # MBサイズ (1-128 MB)
+    buffering_interval = 300  # 秒数 (60-900秒)
 
     cloudwatch_logging_options {
       enabled         = true
