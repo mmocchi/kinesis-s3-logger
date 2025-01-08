@@ -1,4 +1,4 @@
-from my_logger.interfaces import LogWriter, LogFormatter, Logger
+from my_logger.interfaces import LogFormatter, Logger, LogWriter
 from my_logger.models import LogData
 
 
@@ -25,3 +25,14 @@ class MyLogger(Logger):
         """
         formatted_log_data = self.formatter.format(log_data)
         self.writer.write_log(formatted_log_data)
+
+
+class MultiLogger(Logger):
+    """複数のロガーを管理するロガー"""
+
+    def __init__(self, loggers: list[Logger]) -> None:
+        self.loggers = loggers
+
+    def info(self, log_data: LogData) -> None:
+        for logger in self.loggers:
+            logger.info(log_data)

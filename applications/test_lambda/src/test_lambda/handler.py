@@ -15,7 +15,7 @@ from my_logger.models import (
 )
 
 DELIVERY_STREAM_NAME = os.environ["DELIVERY_STREAM_NAME"]
-logger = LoggerFactory.create_kinesis_logger(DELIVERY_STREAM_NAME)
+logger = LoggerFactory.create_both_logger(DELIVERY_STREAM_NAME)
 
 
 def lambda_handler(event, context):

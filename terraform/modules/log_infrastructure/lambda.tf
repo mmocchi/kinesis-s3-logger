@@ -5,12 +5,12 @@ data "archive_file" "lambda_zip" {
 }
 
 resource "aws_lambda_function" "log_writer" {
-  filename         = data.archive_file.lambda_zip.output_path
-  function_name    = var.lambda_function_name
-  role             = aws_iam_role.lambda_role.arn
-  handler          = "test_lambda.handler.lambda_handler"
-  runtime          = "python3.9"
-  timeout          = 30
+  filename      = data.archive_file.lambda_zip.output_path
+  function_name = var.lambda_function_name
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "test_lambda.handler.lambda_handler"
+  runtime       = "python3.9"
+  timeout       = 30
   // ソースコードが変更された場合に関数を更新
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
