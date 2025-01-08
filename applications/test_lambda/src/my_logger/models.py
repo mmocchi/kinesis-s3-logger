@@ -2,14 +2,15 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
 
 
 def format_timestamp(timestamp: datetime) -> str:
-    formatted_timestamp = timestamp.strftime("%Y-%m-%dT%H:%M:%S.%f%z")
-    if formatted_timestamp[-5:].startswith(("-", "+")):
-        formatted_timestamp = formatted_timestamp[:-2] + ":" + formatted_timestamp[-2:]
+    # UTCのdatetimeからJST形式の文字列に変換
+    jst_timestamp = timestamp.astimezone(timezone(timedelta(hours=+9)))
+
+    formatted_timestamp = jst_timestamp.strftime("%Y-%m-%dT%H:%M:%S.%f") + "+09:00"
     return formatted_timestamp
 
 
