@@ -94,6 +94,17 @@ resource "aws_iam_role_policy" "firehose_policy" {
           "arn:aws:glue:*:*:database/${aws_glue_catalog_database.logs_db.name}",
           "arn:aws:glue:*:*:table/${aws_glue_catalog_database.logs_db.name}/*"
         ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "logs:PutLogEvents",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Resource = [
+          "${aws_cloudwatch_log_group.firehose_logs.arn}:*"
+        ]
       }
     ]
   })
