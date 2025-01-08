@@ -1,6 +1,7 @@
+from typing import Any
+
 from my_logger.interfaces import LogFormatter
 from my_logger.models import LogData
-from typing import Any
 
 
 class JsonFormatter(LogFormatter):
@@ -16,9 +17,4 @@ class JsonFormatter(LogFormatter):
         Returns:
             dict[str, Any]: フォーマットされたJSON形式のログデータ
         """
-        return {
-            "timestamp": log_data.timestamp.isoformat(),
-            "user_id": log_data.user_id,
-            "action": log_data.action,
-            "details": log_data.details,
-        }
+        return log_data.to_dict()

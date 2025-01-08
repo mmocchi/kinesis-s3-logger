@@ -7,8 +7,8 @@ from my_logger.interfaces import Logger
 
 class LoggerFactory:
     """Loggerのファクトリークラス"""
-    @staticmethod
 
+    @staticmethod
     def create_kinesis_logger(destination_name: str) -> Logger:
         """
         Kinesis Firehoseへのログ出力を行うLoggerを作成する

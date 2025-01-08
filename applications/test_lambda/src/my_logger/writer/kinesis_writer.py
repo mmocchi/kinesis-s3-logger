@@ -8,6 +8,7 @@ from my_logger.interfaces import LogWriter
 
 class KinesisWriter(LogWriter):
     """Kinesis Firehoseへのログ出力実装"""
+
     def __init__(self, delivery_stream_name: str) -> None:
         """
         Kinesis Firehoseクライアントを初期化する

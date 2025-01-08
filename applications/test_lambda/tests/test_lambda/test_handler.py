@@ -4,8 +4,8 @@ os.environ["DELIVERY_STREAM_NAME"] = "test-kinesis-stream-name"
 
 
 import pytest
-from test_lambda.handler import lambda_handler
 from my_logger.exceptions import LogWriteError
+from test_lambda.handler import lambda_handler
 
 
 def test_lambda_handler_success(mock_logger):

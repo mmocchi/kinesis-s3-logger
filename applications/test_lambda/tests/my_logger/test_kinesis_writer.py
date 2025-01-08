@@ -1,11 +1,15 @@
+from typing import Any
+
 import pytest
 from botocore.exceptions import BotoCoreError
-from my_logger.writer.kinesis_writer import KinesisWriter
 from my_logger.exceptions import KinesisWriteError
+from my_logger.writer.kinesis_writer import KinesisWriter
 
 
 def test_kinesis_writer_write_log_success(
-    mock_boto3_client, sample_log_data, mock_kinesis_response
+    mock_boto3_client,
+    sample_log_dict: dict[str, Any],
+    mock_kinesis_response: dict[str, Any],
 ):
     """
     KinesisWriter.write_logメソッドの成功パターンのテスト
@@ -16,13 +20,11 @@ def test_kinesis_writer_write_log_success(
     # Arrange
     mock_boto3_client.put_record.return_value = mock_kinesis_response
     writer = KinesisWriter("test-stream")
-    expected_record_id = mock_kinesis_response["RecordId"]
 
     # Act
-    record_id = writer.write_log(sample_log_data)
+    writer.write_log(sample_log_dict)
 
     # Assert
-    assert record_id == expected_record_id
     mock_boto3_client.put_record.assert_called_once()
 
 

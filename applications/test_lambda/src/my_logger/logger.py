@@ -25,4 +25,3 @@ class MyLogger(Logger):
         """
         formatted_log_data = self.formatter.format(log_data)
         self.writer.write_log(formatted_log_data)
-

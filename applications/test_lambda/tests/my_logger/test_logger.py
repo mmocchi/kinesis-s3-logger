@@ -1,9 +1,9 @@
-from my_logger.models import LogData
-from my_logger.factory import LoggerFactory
 from my_logger.formatter.json_formatter import JsonFormatter
+from my_logger.logger_factory import LoggerFactory
+from my_logger.models import LogData
 
 
-def test_my_logger_write_log(mocker, sample_log_data):
+def test_my_logger_write_log(mocker, sample_log_data: LogData):
     """
     MyLogger.write_logメソッドのテスト
 
@@ -15,8 +15,8 @@ def test_my_logger_write_log(mocker, sample_log_data):
     mock_writer = mocker.Mock()
     mock_writer.write_log.return_value = "test-record-id"
     logger = LoggerFactory.create_kinesis_logger("test-stream")
-    logger.writer = mock_writer
-    log_data = LogData.create(**sample_log_data)
+    logger.writer = mock_writer  # type: ignore
+    log_data = sample_log_data
 
     formatter = JsonFormatter()
     formatted_log_data = formatter.format(log_data)

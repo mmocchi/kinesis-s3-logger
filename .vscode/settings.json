@@ -1,0 +1,33 @@
+{
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports.ruff": true,
+          "source.fixAll.ruff": true,
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+      },
+      "python.defaultInterpreterPath": "${workspaceFolder}/applications/test_lambda/.venv/bin/python",
+      "ruff.path": [
+        "${workspaceFolder}/applications/test_lambda/.venv/bin/ruff"
+      ],
+      "ruff.lint.args": [
+        "--config=${workspaceFolder}/applications/test_lambda/pyproject.toml",
+      ],
+      "python.analysis.autoImportCompletions": true,
+      "python.analysis.completeFunctionParens": true,
+      "python.analysis.extraPaths": [
+        "${workspaceFolder}/applications/test_lambda/.venv/lib/python3.9/site-packages/",
+        "${workspaceFolder}/applications/test_lambda/src/"
+      ],
+      "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/applications/test_lambda/.venv/lib/python3.9/site-packages/",
+        "${workspaceFolder}/applications/test_lambda/src/"
+      ],
+      "python.testing.pytestArgs": [
+        "${workspaceFolder}/applications/test_lambda/tests"
+      ],
+      "python.testing.unittestEnabled": false,
+      "python.testing.pytestEnabled": true,
+      "mypy.dmypyExecutable": "${workspaceFolder}/applications/test_lambda/.venv/bin/dmypy"
+}
